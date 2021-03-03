@@ -6,6 +6,7 @@
 \usepackage{amsmath, amssymb, amsfonts, amsthm, bbm, dsfont} %Math
 \usepackage{graphicx}
 \usepackage{siunitx}
+\usepackage{letltxmacro}
 
 %! Layout
 \usepackage{url} %Link
@@ -22,6 +23,7 @@
 %! Environnement
 \usepackage{ifthen,xifthen} %Test presence of arguments
 \usepackage{environ}
+
 
 
 %! Drawing
@@ -72,10 +74,12 @@
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\epsilon}{\varepsilon}
 
+\LetLtxMacro{\inte}{\int}
+\renewcommand{\int}[2]{\inte\displaylimits_{#1}^{#2}}
+
 \newcommand{\sqfr}[2]{\ensuremath{\sqrt{\frac{#1}{#2}}}}
 \newcommand{\invfr}[1]{\ensuremath{\frac{1}{\sqrt{#1}}}}
 \newcommand{\inv}[1]{\ensuremath{\frac{1}{#1}}}
-\newcommand{\inte}[2]{\int\displaylimits_{#1}^{#2}}
 \newcommand{\dpi}{\ensuremath{\frac{\pi}{2}}}
 
 \newcommand{\s}[1]{\ensuremath{\sin\left(#1\right)}}
@@ -103,7 +107,13 @@
 \newcommand{\pulse}[1]{\SI{#1}{\radian\per\second}}
 \newcommand{\metre}[1]{\SI{#1}{\metre}}
 \newcommand{\temps}[1]{\SI{#1}{\second}}
+\newcommand{\force}[1]{\SI{#1}{\newton}}
 
+\renewcommand{\do}{\ensuremath{\mathrm{d}}}
+\newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d}#1}{\mathrm{d}#2}}}
+\newcommand{\dderiv}[2]{\ensuremath{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}}
+\newcommand{\drond}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}}
+\newcommand{\ddrond}[2]{\ensuremath{\frac{\partial^2#1}{\partial#2^2}}}
 
 %! References
 \definecolor{url}{RGB}{40,59,152}
