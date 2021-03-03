@@ -3,10 +3,10 @@
 ## Layout
 
 You can use :
-* ```\matiere}{Math}``` To edit the subject name
-* ```\titre}{Assignment 5}``` To edit the assignment name
-* ```\auteur}{Your Name}```
-* ```\ladate}{}``` If you want to include a date
+* ```\newcommand{\matiere}{Math}``` To edit the subject name
+* ```\newcommand{\titre}{Assignment 5}``` To edit the assignment name
+* ```\newcommand{\auteur}{Your Name}```
+* ```\newcommand{\ladate}{}``` If you want to include a date
 
 ## Questions
 
@@ -20,8 +20,8 @@ You can use :
 ### Numbering
 
 If you want to change the way the questions are numbered, you can use :
-```\questionformat}{x}``` Where x can be : **A I 1**
-```\subquestionformat}{y}``` Where x can be : **A a I i 1**
+```\newcommand{\questionformat}{x}``` Where x can be : **A I 1**
+```\newcommand{\subquestionformat}{y}``` Where x can be : **A a I i 1**
 
 If you don't want the questions to appear as "Question", you can rename them using : ```\questionname}{New Name}```
 For instance : ```\questionname}{Problem}```
