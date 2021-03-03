@@ -1,0 +1,355 @@
+%! Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%! Math
+\usepackage{amsmath, amssymb, amsfonts, amsthm, bbm, dsfont} %Math
+\usepackage{graphicx}
+\usepackage{siunitx}
+
+%! Layout
+\usepackage{url} %Link
+\usepackage{ccaption} %Floatting captions
+\usepackage{footnote}
+\usepackage{geometry,lastpage,fancyhdr} %Margins, footer, etc
+\usepackage{datetime}
+\usepackage[shortlabels]{enumitem}
+\usepackage{Baskervaldx} %Font
+\usepackage{etoolbox}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{cleveref}
+
+%! Environnement
+\usepackage{ifthen,xifthen} %Test presence of arguments
+\usepackage{environ}
+
+
+%! Drawing
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows, calc, arrows.meta}
+\usetikzlibrary{shapes.callouts, shapes.symbols, shapes.multipart}
+\tikzstyle{f}=[->,>=stealth,draw]
+\tikzset{
+    every node/.style={
+        anchor=center
+    },}
+
+
+%! Layout ---------------------------------------------------------------------
+\title{\matiere\text{ }- \titre}
+\author{\auteur}
+\date{\ladate}
+\renewcommand{\baselinestretch}{1.5} % Interline
+
+\geometry{top=2cm,bottom=1.8cm,left=2cm,right=2cm} %Margins
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyheadoffset{15pt}
+  \fancyfootoffset{15pt}
+  \fancyhead[RO]{\hspace*{-15pt}\textit{\rightmark}}
+  \fancyhead[L]{\textbf{\leftmark}}
+  \fancyfoot[RO]{\hspace*{-15pt}\textit{\rightmark}}
+  \fancyfoot[L]{\textbf{\leftmark}}
+
+  \fancyhead[R]{\titre} %Right Header
+  \fancyhead[L]{\matiere} %Left header
+  \fancyfoot[L]{\auteur}% Left footer
+  \fancyfoot[C]{} %Central footer
+  \fancyfoot[R]{\thepage /\pageref{LastPage}}% Right footer
+  \renewcommand\footrulewidth{0.5pt} %Footer bar
+  \renewcommand\headrulewidth{0.5pt} %Header bar
+}
+\pagestyle{plain}
+
+
+%! Usefull commands
+\newcommand\paragraphe[1]{\par\medskip\noindent\textbf{#1}}
+\makesavenoteenv{tabular}
+
+%! Maths
+\everymath{\displaystyle}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\epsilon}{\varepsilon}
+
+\newcommand{\sqfr}[2]{\ensuremath{\sqrt{\frac{#1}{#2}}}}
+\newcommand{\invfr}[1]{\ensuremath{\frac{1}{\sqrt{#1}}}}
+\newcommand{\inv}[1]{\ensuremath{\frac{1}{#1}}}
+\newcommand{\inte}[2]{\int\displaylimits_{#1}^{#2}}
+\newcommand{\dpi}{\ensuremath{\frac{\pi}{2}}}
+
+\newcommand{\s}[1]{\ensuremath{\sin\left(#1\right)}}
+\renewcommand{\c}[1]{\ensuremath{\cos\left(#1\right)}} %\c was allready in use
+
+\renewcommand{\vec}[1]{\ensuremath{\overrightarrow{#1}}}
+\newcommand{\ei}[1]{\ensuremath{e^{i#1}}}
+\newcommand{\w}{\ensuremath{\omega}}
+
+\newcommand{\ux}{\ensuremath{\overrightarrow{u_x}}}
+\newcommand{\uy}{\ensuremath{\overrightarrow{u_y}}}
+\newcommand{\uz}{\ensuremath{\overrightarrow{u_z}}}
+\newcommand{\utheta}{\ensuremath{\overrightarrow{u_{\theta}}}}
+\newcommand{\uphi}{\ensuremath{\overrightarrow{u_{\varphi}}}}
+\newcommand{\ur}{\ensuremath{\overrightarrow{u_r}}}
+\newcommand{\ex}{\ensuremath{\overrightarrow{e_x}}}
+\newcommand{\ey}{\ensuremath{\overrightarrow{e_y}}}
+\newcommand{\ez}{\ensuremath{\overrightarrow{e_z}}}
+\newcommand{\etheta}{\ensuremath{\overrightarrow{e_{\theta}}}}
+\newcommand{\ephi}{\ensuremath{\overrightarrow{e_{\varphi}}}}
+\newcommand{\er}{\ensuremath{\overrightarrow{e_r}}}
+
+\newcommand{\speed}[1]{\SI{#1}{\metre\per\second}}
+\newcommand{\stiff}[1]{\SI{#1}{\newton\per\meter}}
+\newcommand{\pulse}[1]{\SI{#1}{\radian\per\second}}
+\newcommand{\metre}[1]{\SI{#1}{\metre}}
+\newcommand{\temps}[1]{\SI{#1}{\second}}
+
+
+%! References
+\definecolor{url}{RGB}{40,59,152}
+\definecolor{cite}{RGB}{67,168,161}
+\definecolor{link}{RGB}{32,128,29}
+\hypersetup{linkcolor=link, citecolor=cite, urlcolor=link, colorlinks=true}
+
+%! Environnements ---------------------------------------------------------------------
+
+% Colors - can be customized
+\definecolor{rouge}{RGB}{205, 0, 0}
+\definecolor{bleu}{RGB}{0,0,180}
+\definecolor{bleusombre}{RGB}{0,0,54}
+\definecolor{vert}{RGB}{0,160,0}
+\definecolor{orange}{RGB}{255,153,51}
+\definecolor{rosesombre}{RGB}{153,0,76}
+
+\newlength{\largeurcasethm}
+\setlength{\largeurcasethm}{\dimexpr(\textwidth - 2\parindent)\relax}
+\newcommand{\margeinterieurebloc}{2mm}
+\newcommand{\margeinterieuretitre}{1.5mm}
+\newlength{\largeurbloc}
+\newlength{\decalagebloc}
+\setlength{\decalagebloc}{\dimexpr(\parindent - \margeinterieurebloc)\relax}
+\newlength{\hauteurtitre}
+\newlength{\hauteurtype}
+\newlength{\hauteurfinale}
+
+% complex, don't get near this
+\NewEnviron{blocstyle}[5]{
+  \setlength{\largeurbloc}{\dimexpr(\linewidth - \margeinterieurebloc - \margeinterieurebloc)\relax}
+  \settoheight{\hauteurtitre}{\fbox{#2}}
+  \settoheight{\hauteurtype}{\fbox{#1}}
+  \pgfmathsetlength{\hauteurfinale}{max(\hauteurtype,\hauteurtitre) + 2*\margeinterieuretitre}
+  \par\medskip\noindent
+  \begin{tikzpicture}
+    \node[draw=#4!25, fill=#4!25, below right, line width=0, outer sep=0, inner sep = \margeinterieurebloc] (body) at (0,0) {
+      \begin{minipage}{1\largeurbloc}
+        \BODY
+      \end{minipage}};
+    \node[draw=#4!55, fill=#4!55, above right, line width=0, outer sep=0, inner sep = 0, text depth = \margeinterieuretitre/2, text height = 2*\margeinterieuretitre, minimum size=\hauteurfinale] (type) at (1.5\parindent,0) {\hspace*{\margeinterieuretitre}
+    \textbf{#1 \ifx&#3&\else\refstepcounter{#3}\thesection.\arabic{#3}\label{#1:\thesection.\arabic{#3}}\fi}\hspace*{\margeinterieuretitre}};
+    \ifx&#2&\else
+    \node[draw=#4!40, fill=#4!40, above right, line width=0, outer sep=0, inner sep = 0, text depth = \margeinterieuretitre/2, text height = 2*\margeinterieuretitre, minimum size=\hauteurfinale] (titre) at (type.south east) {\hspace*{\margeinterieuretitre}\textbf{#2}\hspace*{\margeinterieuretitre}};
+    \fi
+  \end{tikzpicture}
+  \par\medskip
+}
+
+% Definitions of env - can be customized
+
+\newcounter{equationnumber}[section]
+\newenvironment{eq}[1][]{\blocstyle{Equation}{#1}{equationnumber}{vert}{tt}}{\endblocstyle}
+\newenvironment{eq*}[1][]{\blocstyle{Equation}{#1}{}{vert}{}}{\endblocstyle}
+
+\newcounter{resultnumber}[section]
+\newenvironment{res}[1][]{\blocstyle{Result}{#1}{resultnumber}{orange}{}}{\endblocstyle}
+\newenvironment{res*}[1][]{\blocstyle{Result}{#1}{}{orange}{}}{\endblocstyle}
+\newenvironment{prop}[1][]{\blocstyle{Property}{#1}{resultnumber}{rosesombre}{}}{\endblocstyle}
+\newenvironment{prop*}[1][]{\blocstyle{Property}{#1}{}{rosesombre}{}}{\endblocstyle}
+
+\newcounter{notationnumber}[section]
+\newenvironment{notation}[1][]{\blocstyle{Notation}{#1}{notationnumber}{bleu}{}}{\endblocstyle}
+\newenvironment{notation*}[1][]{\blocstyle{Notation}{#1}{}{bleu}{}}{\endblocstyle}
+\newenvironment{hypo}[1][]{\blocstyle{Hypothesis}{#1}{notationnumber}{bleusombre}{}}{\endblocstyle}
+\newenvironment{hypo*}[1][]{\blocstyle{Hypothesis}{#1}{}{bleusombre}{}}{\endblocstyle}
+
+\newcounter{conclusionnumber}[section]
+\newenvironment{conclusion}[1][]{\blocstyle{Conclusion}{#1}{conclusionnumber}{rouge}{thm}}{\endblocstyle}
+\newenvironment{conclusion*}[1][]{\blocstyle{Conclusion}{#1}{}{rouge}{}}{\endblocstyle}
+
+
+
+%! Questions ---------------------------------------------------------------------
+
+\ifdef{\questionname }{}{\newcommand{\questionname}{Question}}
+\newcounter{questioncount}
+\newcommand{\question}[1][]
+{
+  \bigskip\ifnum 0<\thequestioncount
+  \par\noindent\rule{\textwidth}{0.4pt}\vspace*{-3.55mm}\par\noindent\rule{\textwidth}{0.4pt}\else\fi
+  \stepcounter{section}\stepcounter{questioncount}
+  \medskip\par\noindent
+  \ifthenelse{\isempty{#1}}
+  {
+    \ifthenelse{\equal{\questionformat}{I}}
+    {
+      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+    }{
+      \ifthenelse{\equal{\questionformat}{A}}
+      {
+        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+      }{
+        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+      }
+    }
+  }{
+    \ifthenelse{\equal{#1}{I}}
+    {
+      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+    }{
+      \ifthenelse{\equal{#1}{A}}
+      {
+        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+      }{
+        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+      }
+    }
+  }
+}
+\newcommand{\questionnobar}[1][]
+{
+  \stepcounter{section}\stepcounter{questioncount}
+  \bigskip\par\noindent
+  \ifthenelse{\isempty{#1}}
+  {
+    \ifthenelse{\equal{\questionformat}{I}}
+    {
+      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+    }{
+      \ifthenelse{\equal{\questionformat}{A}}
+      {
+        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+      }{
+        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+      }
+    }
+  }{
+    \ifthenelse{\equal{#1}{I}}
+    {
+      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+    }{
+      \ifthenelse{\equal{#1}{A}}
+      {
+        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+      }{
+        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+      }
+    }
+  }
+}
+
+%! Subquestions
+\newcounter{sousquestion}[section]
+\newcommand{\subquestion}[1][]
+{
+  \bigskip\ifnum 0<\thesousquestion
+  \par\noindent\rule{\textwidth}{0.4pt}\else\fi
+  \medskip\par\noindent
+  \stepcounter{subsection}\stepcounter{sousquestion}
+  \ifthenelse{\isempty{#1}}
+  {
+    \ifthenelse{\equal{\subquestionformat}{I}}
+    {
+      \textbf{\large{\Roman{sousquestion})}}\par\medskip
+    }{
+      \ifthenelse{\equal{\subquestionformat}{i}}
+      {
+
+        \textbf{\large{\roman{sousquestion})}}\par\medskip
+      }{
+        \ifthenelse{\equal{\subquestionformat}{1}}
+        {
+          \textbf{\large{\arabic{sousquestion})}}\par\medskip
+        }{
+          \ifthenelse{\equal{\subquestionformat}{A}}
+          {
+            \textbf{\large{\Alph{sousquestion})}}\par\medskip
+          }{
+            \textbf{\large{\alph{sousquestion})}}\par\medskip
+          }
+        }
+      }
+    }
+  }{
+  \ifthenelse{\equal{#1}{I}}
+    {
+      \textbf{\large{\Roman{sousquestion})}}\par\medskip
+    }{
+      \ifthenelse{\equal{#1}{i}}
+      {
+        \textbf{\large{\roman{sousquestion})}}\par\medskip
+      }{
+        \ifthenelse{\equal{#1}{1}}
+        {
+          \textbf{\large{\arabic{sousquestion})}}\par\medskip
+        }{
+          \ifthenelse{\equal{#1}{A}}
+          {
+            \textbf{\large{\Alph{sousquestion})}}\par\medskip
+          }{
+            \textbf{\large{\alph{sousquestion})}}\par\medskip
+          }
+        }
+      }
+    }
+  }
+}
+\newcommand{\subquestionnobar}[1][]
+{
+  \bigskip\par\noindent
+  \stepcounter{subsection}\stepcounter{sousquestion}
+  \ifthenelse{\isempty{#1}}
+  {
+    \ifthenelse{\equal{\subquestionformat}{I}}
+    {
+      \textbf{\large{\Roman{sousquestion})}}\par\medskip
+    }{
+      \ifthenelse{\equal{\subquestionformat}{i}}
+      {
+        \textbf{\large{\roman{sousquestion})}}\par\medskip
+      }{
+        \ifthenelse{\equal{\subquestionformat}{1}}
+        {
+          \textbf{\large{\arabic{sousquestion})}}\par\medskip
+        }{
+          \ifthenelse{\equal{\subquestionformat}{A}}
+          {
+            \textbf{\large{\Alph{sousquestion})}}\par\medskip
+          }{
+            \textbf{\large{\alph{sousquestion})}}\par\medskip
+          }
+        }
+      }
+    }
+  }{
+    \ifthenelse{\equal{#1}{I}}
+    {
+      \textbf{\large{\Roman{sousquestion})}}\par\medskip
+    }{
+      \ifthenelse{\equal{#1}{I}}
+      {
+        \textbf{\large{\roman{sousquestion})}}\par\medskip
+      }{
+        \ifthenelse{\equal{#1}{1}}
+        {
+          \textbf{\large{\arabic{sousquestion})}}\par\medskip
+        }{
+          \ifthenelse{\equal{#1}{A}}
+          {
+            \textbf{\large{\Alph{sousquestion})}}\par\medskip
+          }{
+            \textbf{\large{\alph{sousquestion})}}\par\medskip
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\newcommand{\matiere}{Math} %The name of the subject
+\newcommand{\titre}{Assignment 5} %The name of the assignment
+\newcommand{\auteur}{Your Name}
+\newcommand{\ladate}{}%If you wan to specify the date
+\newcommand{\questionformat}{1} %Subquestions numbering : A,I,1
+\newcommand{\subquestionformat}{i} %Subquestions numbering : A,a,I,i,1
+
+%Optional
+%\newcommand{\questionname}{Problem} %If you want to rename "Question"
+
+\usepackage{./template}
+
+\begin{document}
+\maketitle
+
+\question
+
+\subquestion
+
+\begin{eq}This is an equation\end{eq}
+\begin{eq*}This equation is not numbered\end{eq*}
+
+\begin{res}This is a result\end{res}
+\begin{res}This result is not numbered\end{res}
+
+
+\subquestion
+
+\begin{prop}This is a property\end{prop}
+\begin{prop*}This property is not numbered\end{prop*}
+
+\begin{notation}This is a notation\end{notation}
+\begin{notation*}This notation is not numbered\end{notation*}
+
+\begin{hypo}This is an hypothesis\end{hypo}
+\begin{hypo*}This hypothesis is not numbered\end{hypo*}
+
+\begin{conclusion}This is a conclusion\end{conclusion}
+\begin{conclusion*}This conclusion is not numbered\end{conclusion*}
+
+
+\subquestion[1]
+
+The numbering of this subquestion is different from the rest.
+
+We can call an earlier block using \ref{Equation:1.1}.
+
+\begin{eq}[A great equation]This equation has a title\end{eq}
+
+\question
+
+\subquestion
+
+Foo
+
+\subquestionnobar
+
+A sub-question without limiter
+
+
+\questionnobar
+
+A question without limiter.
+
+\pulse{5,555e-2}
+
+\metre{17}
+
+\temps{0.1e-2}
+
+\invfr{a}
+
+$\inte{a}{b}f(z)dz$
+
+\inv{ab}
+
+\vec{u}\dpi
+
+\c{\frac{\pi z}{L}}
+
+\s{\frac{\pi z}{L}}
+
+\ux
+
+\ex
+
+\sqfr{3}{2} \ei{\omega t}\w
+
+\end{document}
+
