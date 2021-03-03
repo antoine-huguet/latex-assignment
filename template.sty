@@ -68,27 +68,30 @@
 \newcommand\paragraphe[1]{\par\medskip\noindent\textbf{#1}}
 \makesavenoteenv{tabular}
 
-%! Maths
+%! Maths ---------------------------------------------------------------------
+
+%! Rename math commands
 \everymath{\displaystyle}
+\LetLtxMacro{\inte}{\int}
+\renewcommand{\int}[2]{\inte\displaylimits_{#1}^{#2}}
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\epsilon}{\varepsilon}
 
-\LetLtxMacro{\inte}{\int}
-\renewcommand{\int}[2]{\inte\displaylimits_{#1}^{#2}}
-
+%! Miscleannous time saving commands
 \newcommand{\sqfr}[2]{\ensuremath{\sqrt{\frac{#1}{#2}}}}
 \newcommand{\invfr}[1]{\ensuremath{\frac{1}{\sqrt{#1}}}}
 \newcommand{\inv}[1]{\ensuremath{\frac{1}{#1}}}
 \newcommand{\dpi}{\ensuremath{\frac{\pi}{2}}}
-
-\newcommand{\s}[1]{\ensuremath{\sin\left(#1\right)}}
-\renewcommand{\c}[1]{\ensuremath{\cos\left(#1\right)}} %\c was allready in use
-
-\renewcommand{\vec}[1]{\ensuremath{\overrightarrow{#1}}}
 \newcommand{\ei}[1]{\ensuremath{e^{i#1}}}
 \newcommand{\w}{\ensuremath{\omega}}
 
+%! Functions
+\newcommand{\s}[1]{\ensuremath{\sin\left(#1\right)}}
+\renewcommand{\c}[1]{\ensuremath{\cos\left(#1\right)}} %\c was allready in use
+
+%! Vectors
+\renewcommand{\vec}[1]{\ensuremath{\overrightarrow{#1}}}
 \newcommand{\ux}{\ensuremath{\overrightarrow{u_x}}}
 \newcommand{\uy}{\ensuremath{\overrightarrow{u_y}}}
 \newcommand{\uz}{\ensuremath{\overrightarrow{u_z}}}
@@ -102,6 +105,7 @@
 \newcommand{\ephi}{\ensuremath{\overrightarrow{e_{\varphi}}}}
 \newcommand{\er}{\ensuremath{\overrightarrow{e_r}}}
 
+%! Units
 \newcommand{\speed}[1]{\SI{#1}{\metre\per\second}}
 \newcommand{\stiff}[1]{\SI{#1}{\newton\per\meter}}
 \newcommand{\pulse}[1]{\SI{#1}{\radian\per\second}}
@@ -109,11 +113,18 @@
 \newcommand{\temps}[1]{\SI{#1}{\second}}
 \newcommand{\force}[1]{\SI{#1}{\newton}}
 
+%! Differential calcul
 \renewcommand{\do}{\ensuremath{\mathrm{d}}}
 \newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d}#1}{\mathrm{d}#2}}}
 \newcommand{\dderiv}[2]{\ensuremath{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}}
 \newcommand{\drond}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}}
 \newcommand{\ddrond}[2]{\ensuremath{\frac{\partial^2#1}{\partial#2^2}}}
+\newcommand{\dx}{\ensuremath{\mathrm{d}x}}
+\newcommand{\dy}{\ensuremath{\mathrm{d}y}}
+\newcommand{\dz}{\ensuremath{\mathrm{d}z}}
+\newcommand{\dt}{\ensuremath{\mathrm{d}t}}
+
+
 
 %! References
 \definecolor{url}{RGB}{40,59,152}
@@ -344,7 +355,7 @@
     {
       \textbf{\large{\Roman{sousquestion})}}\par\medskip
     }{
-      \ifthenelse{\equal{#1}{I}}
+      \ifthenelse{\equal{#1}{i}}
       {
         \textbf{\large{\roman{sousquestion})}}\par\medskip
       }{
