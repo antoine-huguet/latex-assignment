@@ -23,8 +23,8 @@ If you want to change the way the questions are numbered, you can use :
 ```\newcommand{\questionformat}{x}``` Where x can be : **A I 1**
 ```\newcommand{\subquestionformat}{y}``` Where x can be : **A a I i 1**
 
-If you don't want the questions to appear as "Question", you can rename them using : ```\questionname}{New Name}```
-For instance : ```\questionname}{Problem}```
+If you don't want the questions to appear as "Question", you can rename them using : ```\newcommand{questionname}{New Name}```
+For instance : ```\newcommand{questionname}{Problem}```
 
 If you want, you can change the numbering system for a specific question using :
 * ```\question[x]``` Where x can be : **A I 1**
