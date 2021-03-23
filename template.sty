@@ -79,7 +79,7 @@
 %! Rename math commands
 \everymath{\displaystyle}
 \LetLtxMacro{\inte}{\int}
-\renewcommand{\int}[2]{\inte\displaylimits_{#1}^{#2}}
+\renewcommand{\int}{\inte\displaylimits}
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\epsilon}{\varepsilon}
@@ -89,6 +89,7 @@
 \newcommand{\invfr}[1]{\ensuremath{\frac{1}{\sqrt{#1}}}}
 \newcommand{\inv}[1]{\ensuremath{\frac{1}{#1}}}
 \newcommand{\dpi}{\ensuremath{\frac{\pi}{2}}}
+\newcommand{\demi}{\ensuremath{\frac{1}{2}}}
 \newcommand{\ei}[1]{\ensuremath{e^{i#1}}}
 \newcommand{\w}{\ensuremath{\omega}}
 
@@ -115,8 +116,8 @@
 \newcommand{\speed}[1]{\SI{#1}{\metre\per\second}}
 \newcommand{\stiff}[1]{\SI{#1}{\newton\per\meter}}
 \newcommand{\pulse}[1]{\SI{#1}{\radian\per\second}}
-\newcommand{\metre}[1]{\SI{#1}{\metre}}
-\newcommand{\temps}[1]{\SI{#1}{\second}}
+\newcommand{\length}[1]{\SI{#1}{\metre}}
+\renewcommand{\time}[1]{\SI{#1}{\second}}
 \newcommand{\force}[1]{\SI{#1}{\newton}}
 
 %! Differential calcul
@@ -125,12 +126,19 @@
 \newcommand{\dderiv}[2]{\ensuremath{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}}
 \newcommand{\drond}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}}
 \newcommand{\ddrond}[2]{\ensuremath{\frac{\partial^2#1}{\partial#2^2}}}
+\newcommand{\dddrond}[3]{\ensuremath{\frac{\partial^2#1}{\partial#2 \partial#3}}}
 \newcommand{\dx}{\ensuremath{\mathrm{d}x}}
 \newcommand{\dy}{\ensuremath{\mathrm{d}y}}
 \newcommand{\dz}{\ensuremath{\mathrm{d}z}}
 \newcommand{\dt}{\ensuremath{\mathrm{d}t}}
-
-
+\newcommand{\dr}{\ensuremath{\mathrm{d}r}}
+\newcommand{\df}{\ensuremath{\mathrm{d}f}}
+\newcommand{\dv}{\ensuremath{\mathrm{d}V}}
+\newcommand{\ds}{\ensuremath{\mathrm{d}S}}
+\newcommand{\dphi}{\ensuremath{\mathrm{d}\phi}}
+\newcommand{\drho}{\ensuremath{\mathrm{d}\rho}}
+\newcommand{\dtau}{\ensuremath{\mathrm{d}\tau}}
+\newcommand{\dtheta}{\ensuremath{\mathrm{d}\theta}}
 
 %! References
 \definecolor{url}{RGB}{40,59,152}
@@ -203,10 +211,16 @@
 \newenvironment{conclusion*}[1][]{\blocstyle{Conclusion}{#1}{}{rouge}{}}{\endblocstyle}
 
 
-
 %! Questions ---------------------------------------------------------------------
 
-\ifdef{\questionname }{}{\newcommand{\questionname}{Question}}
+\newcommand{\questiontypeinternal}{Question}
+\newcommand{\questiontype}[1]{\renewcommand{\questiontypeinternal}{#1}}
+\newcommand{\questionnameinternal}{}
+\newcommand{\questionname}[1]{\renewcommand{\questionnameinternal}{$\cdot$ #1}}
+\newcommand{\questioname}[1]{\questionname{#1}} %If people miss spell questionname
+
+
+\ifdef{\questiontypeinternal}{}{\newcommand{\questiontypeinternal}{Question}}
 \newcounter{questioncount}
 \newcommand{\question}[1][]
 {
@@ -218,25 +232,25 @@
   {
     \ifthenelse{\equal{\questionformat}{I}}
     {
-      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+      \Large{\textbf{\underline{\questiontypeinternal \text{ }\Roman{questioncount}}}\questionnameinternal}\par\medskip
     }{
       \ifthenelse{\equal{\questionformat}{A}}
       {
-        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\Alph{questioncount}}}\questionnameinternal}\par\medskip
       }{
-        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\arabic{questioncount}}}\questionnameinternal}\par\medskip
       }
     }
   }{
     \ifthenelse{\equal{#1}{I}}
     {
-      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+      \Large{\textbf{\underline{\questiontypeinternal \text{ }\Roman{questioncount}}}\questionnameinternal}\par\medskip
     }{
       \ifthenelse{\equal{#1}{A}}
       {
-        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\Alph{questioncount}}}\questionnameinternal}\par\medskip
       }{
-        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\arabic{questioncount}}}\questionnameinternal}\par\medskip
       }
     }
   }
@@ -249,25 +263,25 @@
   {
     \ifthenelse{\equal{\questionformat}{I}}
     {
-      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+      \Large{\textbf{\underline{\questiontypeinternal \text{ }\Roman{questioncount}}}\questionnameinternal}\par\medskip
     }{
       \ifthenelse{\equal{\questionformat}{A}}
       {
-        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\Alph{questioncount}}}\questionnameinternal}\par\medskip
       }{
-        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\arabic{questioncount}}}\questionnameinternal}\par\medskip
       }
     }
   }{
     \ifthenelse{\equal{#1}{I}}
     {
-      \textbf{\underline{\Large{\questionname \text{ }\Roman{questioncount}}}}\par\medskip
+      \Large{\textbf{\underline{\questiontypeinternal \text{ }\Roman{questioncount}}}\questionnameinternal}\par\medskip
     }{
       \ifthenelse{\equal{#1}{A}}
       {
-        \textbf{\underline{\Large{\questionname \text{ }\Alph{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\Alph{questioncount}}}\questionnameinternal}\par\medskip
       }{
-        \textbf{\underline{\Large{\questionname \text{ }\arabic{questioncount}}}}
+        \Large{\textbf{\underline{\questiontypeinternal \text{ }\arabic{questioncount}}}\questionnameinternal}\par\medskip
       }
     }
   }
