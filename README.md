@@ -60,6 +60,21 @@ If you want to add a title, you can use :
 \end{eq}
 ```
 
+## Listing
+
+If you want to include code in your document, use :
+```
+\begin{figure}
+    \begin{lstlisting}[style=Python]
+        print("Hello World")
+    \end{lstlisting}
+\end{figure}
+```
+The two styles currently supported are : "Matlab" and "Python". You can add optional caption or label to the listing. If you want to import code from a file, use :
+
+``` \lstinputlisting[caption={My code},label={lst:name}]{path/to/file}```
+
+
 ## Maths
 
 ### Shortcuts
@@ -102,8 +117,8 @@ You can write x using scientific notation. For instance : x=1,24e-3.
 * ```\speed{x}``` = ```\SI{x}{\metre\per\second}```
 * ```\stiff{x}``` = ```\SI{x}{\newton\per\meter}```
 * ```\pulse{x}``` = ```\SI{x}{\radian\per\second}```
-* ```\metre{x}``` = ```\SI{x}{\metre}```
-* ```\temps{x}``` = ```\SI{x}{\second}```
+* ```\length{x}``` = ```\SI{x}{\metre}```
+* ```\time{x}``` = ```\SI{x}{\second}```
 * ```\force{x}``` = ```\SI{x}{\newton}```
 
 ### Differential calcul
