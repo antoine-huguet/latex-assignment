@@ -28,9 +28,8 @@
 
 %! Listings
 \usepackage{listings}
-\lstdefinestyle{Matlab}{language=Matlab,breaklines=true,keywordstyle=\color{blue},commentstyle=\color{olive}, frame=single, numbers=left,showstringspaces=false,basicstyle=\ttfamily}
-\lstdefinestyle{Python}{language=Python,breaklines=true,keywordstyle=\color{blue},commentstyle=\color{olive}, frame=single, numbers=left,showstringspaces=false,emph={True,False},emphstyle={\color{orange}},basicstyle=\ttfamily}
-
+\lstdefinestyle{Matlab}{language=Matlab,breaklines=true,keywordstyle=\color{blue},commentstyle=\color{olive}, frame=single, numbers=left,showstringspaces=false,basicstyle=\ttfamily\linespread{0.8}}
+\lstdefinestyle{Python}{language=Python,breaklines=true,keywordstyle=\color{blue},commentstyle=\color{olive}, frame=single, numbers=left,showstringspaces=false,emph={True,False},emphstyle={\color{orange}},basicstyle=\ttfamily\linespread{0.8}}
 
 %! Drawing
 \usepackage{pgf,tikz}
@@ -79,7 +78,7 @@
 %! Rename math commands
 \everymath{\displaystyle}
 \LetLtxMacro{\inte}{\int}
-\renewcommand{\int}[2]{\inte\displaylimits_{#1}^{#2}}
+\renewcommand{\int}{\inte\displaylimits}
 \renewcommand{\geq}{\geqslant}
 \renewcommand{\leq}{\leqslant}
 \renewcommand{\epsilon}{\varepsilon}
@@ -89,6 +88,7 @@
 \newcommand{\invfr}[1]{\ensuremath{\frac{1}{\sqrt{#1}}}}
 \newcommand{\inv}[1]{\ensuremath{\frac{1}{#1}}}
 \newcommand{\dpi}{\ensuremath{\frac{\pi}{2}}}
+\newcommand{\demi}{\ensuremath{\frac{1}{2}}}
 \newcommand{\ei}[1]{\ensuremath{e^{i#1}}}
 \newcommand{\w}{\ensuremath{\omega}}
 
@@ -138,7 +138,10 @@
 \newcommand{\drho}{\ensuremath{\mathrm{d}\rho}}
 \newcommand{\dtau}{\ensuremath{\mathrm{d}\tau}}
 \newcommand{\dtheta}{\ensuremath{\mathrm{d}\theta}}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0ffe1fb3ebc6deff511fec414fef20b79e89a31b
 
 %! References
 \definecolor{url}{RGB}{40,59,152}
@@ -213,7 +216,14 @@
 
 %! Questions ---------------------------------------------------------------------
 
-\ifdef{\questionname }{}{\newcommand{\questionname}{Question}}
+\newcommand{\questiontypeinternal}{Question}
+\newcommand{\questiontype}[1]{\renewcommand{\questiontypeinternal}{#1}}
+\newcommand{\questionnameinternal}{}
+\newcommand{\questionname}[1]{\renewcommand{\questionnameinternal}{$\cdot$ #1}}
+\newcommand{\questioname}[1]{\questionname{#1}} %If people miss spell questionname
+
+
+\ifdef{\questiontypeinternal}{}{\newcommand{\questiontypeinternal}{Question}}
 \newcounter{questioncount}
 \newcommand{\question}[1][]
 {

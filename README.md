@@ -23,8 +23,11 @@ If you want to change the way the questions are numbered, you can use :
 ```\newcommand{\questionformat}{x}``` Where x can be : **A I 1**
 ```\newcommand{\subquestionformat}{y}``` Where x can be : **A a I i 1**
 
-If you don't want the questions to appear as "Question", you can rename them using : ```\newcommand{questionname}{New Name}```
-For instance : ```\newcommand{questionname}{Problem}```
+If you don't want the questions to appear as "Question", you can rename them using : ```\questiontype{New Name}```.
+For instance : ```\questiontype{Problem}```
+
+You can also add a custom title to a question using ```\questionname{Title}```.
+For instance : ```\questionname{Beginner's Guide}```
 
 If you want, you can change the numbering system for a specific question using :
 * ```\question[x]``` Where x can be : **A I 1**
@@ -57,6 +60,21 @@ If you want to add a title, you can use :
 \end{eq}
 ```
 
+## Listing
+
+If you want to include code in your document, use :
+```
+\begin{figure}
+    \begin{lstlisting}[style=Python]
+        print("Hello World")
+    \end{lstlisting}
+\end{figure}
+```
+The two styles currently supported are : "Matlab" and "Python". You can add optional caption or label to the listing. If you want to import code from a file, use :
+
+``` \lstinputlisting[caption={My code},label={lst:name}]{path/to/file}```
+
+
 ## Maths
 
 ### Shortcuts
@@ -65,12 +83,17 @@ If you want to add a title, you can use :
 * ```\inv{a}``` = ```\frac{1}{a}```
 * ```\invfr{a}``` = ```\frac{1}{\sqrt{a}}```
 * ```\dpi``` = ```\frac{\pi}{2}```
+* ```\demi``` = ```\frac{1}{2}```
 * ```\ei{x}``` = ```e^{i x}```
 * ```\w``` = ```\omega```
 
 ### Functions
 * ```\s{x}``` = ```\sin\left(x\right)```
 * ```\c{x}``` = ```\cos\left(x\right)```
+
+### Integrals
+* ```\int``` = Top and Bottom limits
+* ```\inte``` = Side limits
 
 ### Vectors
 * ```\vec{x}``` = ```\overrightarrow{x}```
@@ -94,22 +117,29 @@ You can write x using scientific notation. For instance : x=1,24e-3.
 * ```\speed{x}``` = ```\SI{x}{\metre\per\second}```
 * ```\stiff{x}``` = ```\SI{x}{\newton\per\meter}```
 * ```\pulse{x}``` = ```\SI{x}{\radian\per\second}```
-* ```\metre{x}``` = ```\SI{x}{\metre}```
-* ```\temps{x}``` = ```\SI{x}{\second}```
+* ```\length{x}``` = ```\SI{x}{\metre}```
+* ```\time{x}``` = ```\SI{x}{\second}```
 * ```\force{x}``` = ```\SI{x}{\newton}```
 
 ### Differential calcul
-* ```\do``` = ```\mathrm{d}```
+* ```\d``` = ```\mathrm{d}```
 * ```\deriv{f}{x}``` = ```\frac{\mathrm{d}f}{\mathrm{d}x}```
 * ```\deriv{f}{x}``` = ```\frac{\mathrm{d}^2f}{\mathrm{d}^2x}```
 * ```\drond{f}{x}``` = ```\frac{\partial f}{\partial x}```
-* ```\drond{f}{x}``` = ```\frac{\partial^2 f}{\partial x^2}```
+* ```\ddrond{f}{x}``` = ```\frac{\partial^2 f}{\partial x^2}```
+* ```\dddrond{f}{x}{y}``` = ```\frac{\partial^2 f}{\partial x\partial y}```
 * ```\dx``` = ```\mathrm{d}x```
 * ```\dy``` = ```\mathrm{d}y```
 * ```\dz``` = ```\mathrm{d}z```
+* ```\dr``` = ```\mathrm{d}r```
 * ```\dt``` = ```\mathrm{d}t```
-
-
+* ```\df``` = ``` \mathrm{d}f```
+* ```\dv``` = ``` \mathrm{d}V```
+* ```\ds``` = ``` \mathrm{d}S```
+* ```\dphi``` = ``` \mathrm{d}\phi```
+* ```\drho``` = ``` \mathrm{d}\rho```
+* ```\dtau``` = ``` \mathrm{d}\tau```
+* ```\dtheta``` = ``` \mathrm{d}\theta```
 
 
 
