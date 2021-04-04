@@ -140,8 +140,3 @@ You can write x using scientific notation. For instance : x=1,24e-3.
 * ```\drho``` = ``` \mathrm{d}\rho```
 * ```\dtau``` = ``` \mathrm{d}\tau```
 * ```\dtheta``` = ``` \mathrm{d}\theta```
-
-
-
-
-
